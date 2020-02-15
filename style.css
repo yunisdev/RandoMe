@@ -1,0 +1,18 @@
+body{
+    margin:0;
+    padding:0;
+    background-color:#bbbbbb;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    justify-content: center;
+}
+div[role="main"]{
+    background-color:#cecece;
+    width:80%;
+    height: 80vh;
+    box-shadow: #acacac 20px 20px 30px;
+    border-radius: 20px;
+    margin-top:5vh;    
+    padding:5vh;
+}
