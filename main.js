@@ -1,6 +1,15 @@
 function sl(sel){
     return  document.querySelector(sel);
 }
+function Sleep(time){
+    var t0= performance.now();
+    while(true){
+        var t1 = performance.now();
+        if(t1-t0>=time){
+            break;
+        }
+    }
+}
 var characterLib = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%&^*)("
 function characterRandomizer(){
     var randomNUM;
@@ -26,7 +35,6 @@ var mypromise = new Promise(function(res,rej){
 });
 mypromise.then(function(data){
     userDataT = JSON.parse(data.target.response).results[0];
-    console.log(userDataT);
     udt = {
         name:userDataT.name.first + ' ' +userDataT.name.last,
         gender:userDataT.gender,
@@ -46,8 +54,6 @@ mypromise.then(function(data){
         }
     };
     main(udt);
-    console.log('*************');
-    console.log(udt);
 
 
 }).catch(function(){
@@ -57,4 +63,13 @@ function main(data){
     sl('img#profileimg').setAttribute('src', data.photoSRC);
     sl('#fullname').innerHTML = data.name;
     sl('#gender').innerHTML = data.gender;
+    sl('#username').innerHTML = data.login.username;
+    sl('#email').innerHTML = data.login.email;
+    sl('#password').innerHTML = data.login.password;
+    sl('#nat').innerHTML = data.nat;
+    sl('#dob').innerHTML = data.dob;
+    sl('#phoneNum').innerHTML = data.phoneNum;
+    sl('#city').innerHTML = data.address.city;
+    sl('#country').innerHTML = data.address.country;
+    sl('#post').innerHTML = data.address.post;   
 }
