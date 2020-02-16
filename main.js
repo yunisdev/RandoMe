@@ -14,6 +14,7 @@ function Sleep(time){
 }
 //Available character library
 var characterLib = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%&^*)("
+//Function for return random character for random password
 function characterRandomizer(){
     var randomNUM;
     do{
@@ -21,6 +22,7 @@ function characterRandomizer(){
     }while(randomNUM<0 || randomNUM>=characterLib.length);
     return characterLib[randomNUM];
 }
+//Function for generating random password
 function generatePassword(){
     var len =Math.floor(Math.random() * 11+8);
     var password = "";
@@ -29,6 +31,7 @@ function generatePassword(){
     }
     return password;
 }
+//Promise for getting data
 var mypromise = new Promise(function(res,rej){
     var request = new XMLHttpRequest();
     request.open('get','https://randomuser.me/api/');
@@ -36,15 +39,17 @@ var mypromise = new Promise(function(res,rej){
     request.onerror = rej;
     request.send();
 });
+//Working promise
 mypromise.then(function(data){
     userDataT = JSON.parse(data.target.response).results[0];
+    //creating object for collecting usable data
     udt = {
         name:userDataT.name.first + ' ' +userDataT.name.last,
         gender:userDataT.gender,
         login:{
             email:userDataT.email,
             password:generatePassword(),
-            userName: userDataT.login.username,
+            username: userDataT.login.username,
         },
         photoSRC:userDataT.picture.large,
         nat:userDataT.nat,
@@ -57,11 +62,11 @@ mypromise.then(function(data){
         }
     };
     main(udt);
-
-
 }).catch(function(){
+    //if fail to get data
     console.log('error');
 });
+//main part for filling data to UI
 function main(data){
     sl('img#profileimg').setAttribute('src', data.photoSRC);
     sl('#fullname').innerHTML = data.name;
