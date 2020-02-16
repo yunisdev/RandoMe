@@ -1,6 +1,8 @@
+//A simple selector function for writing less code
 function sl(sel){
     return  document.querySelector(sel);
 }
+//Sleep function (not using but usable for future)
 function Sleep(time){
     var t0= performance.now();
     while(true){
@@ -10,6 +12,7 @@ function Sleep(time){
         }
     }
 }
+//Available character library
 var characterLib = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%&^*)("
 function characterRandomizer(){
     var randomNUM;
