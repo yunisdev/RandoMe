@@ -1,5 +1,5 @@
-function fillDATA(){
-
+function sl(sel){
+    return  document.querySelector(sel);
 }
 function generatePassword(){
     var len =Math.floor(Math.random() * 11+8);
@@ -18,8 +18,11 @@ mypromise.then(function(data){
     udt = {
         name:userDataT.name.first + ' ' +userDataT.name.last,
         gender:userDataT.gender,
-        email:userDataT.email,
-        password:generatePassword(),
+        login:{
+            email:userDataT.email,
+            password:generatePassword(),
+            userName: userDataT.login.username,
+        },
         photoSRC:userDataT.picture.large,
         nat:userDataT.nat,
         dob:userDataT.dob.date.substring(0,10)+'(yyyy-mm-dd)',
@@ -28,8 +31,9 @@ mypromise.then(function(data){
             city: userDataT.location.city,
             country: userDataT.location.country,
             post: userDataT.location.postcode,
-        },
+        }
     };
+    main(udt);
     console.log('*************');
     console.log(udt);
 
@@ -37,3 +41,8 @@ mypromise.then(function(data){
 }).catch(function(){
     console.log('error');
 });
+
+function main(data){
+    sl('img#profileimg').setAttribute('src', data.photoSRC);
+    sl('#fullname').innerHTML = data.name;
+}
