@@ -1,9 +1,21 @@
 function sl(sel){
     return  document.querySelector(sel);
 }
+var characterLib = "1234567890qwertyuiopasdfghjklzxcvbnm!@#$%&^*)("
+function characterRandomizer(){
+    var randomNUM;
+    do{
+        randomNUM = Math.floor(Math.random() * 101-1);
+    }while(randomNUM<0 || randomNUM>=characterLib.length);
+    return characterLib[randomNUM];
+}
 function generatePassword(){
     var len =Math.floor(Math.random() * 11+8);
-    return len;
+    var password = "";
+    for(var i=0;i<len;i++){
+        password+=characterRandomizer();
+    }
+    return password;
 }
 var mypromise = new Promise(function(res,rej){
     var request = new XMLHttpRequest();
@@ -44,4 +56,5 @@ mypromise.then(function(data){
 function main(data){
     sl('img#profileimg').setAttribute('src', data.photoSRC);
     sl('#fullname').innerHTML = data.name;
+    sl('#gender').innerHTML = data.gender;
 }
