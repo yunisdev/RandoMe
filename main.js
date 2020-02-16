@@ -41,7 +41,6 @@ mypromise.then(function(data){
 }).catch(function(){
     console.log('error');
 });
-
 function main(data){
     sl('img#profileimg').setAttribute('src', data.photoSRC);
     sl('#fullname').innerHTML = data.name;
